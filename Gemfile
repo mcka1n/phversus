@@ -20,6 +20,7 @@ end
 gem 'jquery-rails'
 
 # Where the magic comes from
+gem 'devise'
 gem 'instagram'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
