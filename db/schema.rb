@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140131230407) do
+ActiveRecord::Schema.define(version: 20140201041726) do
+
+  create_table "media", force: true do |t|
+    t.string   "instagram_id"
+    t.string   "instagram_user_id"
+    t.string   "instagram_link"
+    t.string   "title"
+    t.text     "description"
+    t.string   "slug"
+    t.string   "tags"
+    t.string   "content_type"
+    t.string   "small"
+    t.string   "medium"
+    t.string   "large"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
