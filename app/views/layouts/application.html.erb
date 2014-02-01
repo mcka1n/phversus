@@ -10,7 +10,7 @@
 
 	<p class="notice"><%= notice %></p>
 	<p class="alert"><%= alert %></p>
-<%= yield %>
+
 
  <% if user_signed_in? %>
   <li>
@@ -32,7 +32,7 @@
   </li>
 <% end %>
 
-
+<%= yield %>
 
 </body>
 </html>
