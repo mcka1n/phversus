@@ -1,17 +1,19 @@
 
 <h1>  Phversus </h1>
+
 <center>
 	<h2> #  <%= @tag %>  </h2>
 </center>
 
-
 <table align="center">
 	<tr>
 		<td>
-			<img src="/assets/excel.png" height="90" width="90"><p>Make an Excel Model</p>
+			<%=image_tag(@picture_left, alt: "phVersus Example Image")%>
+			<p>phVersus Example Image</p>
 		</td>
 		<td>
-			<img src="/assets/excel.png" height="90" width="90"><p>Make an Excel Model</p>
+			<%=image_tag(@picture_right, alt: "phVersus Example Image")%>
+			<p>phVersus Example Image</p>
 		</td>
 	</tr>
 </table>
