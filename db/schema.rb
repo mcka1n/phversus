@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140201053813) do
+ActiveRecord::Schema.define(version: 20140203001545) do
 
   create_table "media", force: true do |t|
     t.string   "instagram_id"
@@ -33,6 +33,30 @@ ActiveRecord::Schema.define(version: 20140201053813) do
   end
 
   add_index "media", ["instagram_user_id"], name: "index_media_on_instagram_user_id"
+
+  create_table "profiles", force: true do |t|
+    t.integer  "user_id"
+    t.string   "username"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "gender"
+    t.date     "birthday"
+    t.integer  "phone"
+    t.string   "current_city"
+    t.string   "address"
+    t.integer  "zip"
+    t.text     "about"
+    t.string   "school"
+    t.string   "employer"
+    t.string   "languages"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "linkedin"
+    t.string   "instagram"
+    t.string   "youtube"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
