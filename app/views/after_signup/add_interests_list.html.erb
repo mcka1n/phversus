@@ -1,0 +1,14 @@
+<h1> Profile </h1>
+
+<h2> Add your interests </h2>
+
+<%= form_for @profile, :url => wizard_path, :method => :put do |f| %>
+  <div class="field">
+    <%= f.label :instagram %><br />
+    <%= f.text_field :instagram %>
+  </div>
+
+  <%= f.submit "Continue" %>
+<% end %>
+
+<%= link_to 'skip', next_wizard_path %>
