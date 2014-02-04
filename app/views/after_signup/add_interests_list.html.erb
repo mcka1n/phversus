@@ -4,8 +4,8 @@
 
 <%= form_for @profile, :url => wizard_path, :method => :put do |f| %>
   <div class="field">
-    <%= f.label :instagram %><br />
-    <%= f.text_field :instagram %>
+    <%= f.label :tag_list, "(Comma Separated)" %><br />
+    <%= f.text_field :tag_list %>
   </div>
 
   <%= f.submit "Continue" %>

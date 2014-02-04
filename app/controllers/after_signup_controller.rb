@@ -32,7 +32,7 @@ class AfterSignupController < ApplicationController
 
   private
   def user_profile_parameters
-    params.require(:profile).permit(:user_id, :username, :first_name, :last_name, :gender, :birthday, :phone, :current_city, :address, :zip, :about, :school, :employer, :languages, :facebook, :twitter, :linkedin, :youtube, :instagram)
+    params.require(:profile).permit(:user_id, :username, :first_name, :last_name, :gender, :birthday, :phone, :current_city, :address, :zip, :about, :school, :employer, :languages, :facebook, :twitter, :linkedin, :youtube, :instagram, :tag_list)
   end
 
 end
