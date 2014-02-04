@@ -1,14 +1,22 @@
 <h1> Profile </h1>
 
-<h2> Add your interests </h2>
+<h2> Add your interests</h2>
 
-<%= form_for @profile, :url => wizard_path, :method => :put do |f| %>
-  <div class="field">
-    <%= f.label :tag_list, "(Comma Separated)" %><br />
-    <%= f.text_field :tag_list %>
-  </div>
+<% if @profile.tag_list.empty? %>
 
-  <%= f.submit "Continue" %>
+  <%= form_for @profile, :url => wizard_path, :method => :put do |f| %>
+    <div class="field">
+      <%= f.label :tag_list, "(Comma Separated)" %><br />
+      <%= f.text_field :tag_list %>
+    </div>
+    <%= f.submit "Continue" %>
+  <% end %>
+
+<% else %>
+  It looks like you already have some interests on phVersus 
+  <br>
+  <%= @profile.tag_list %>
+  <br>
+  <%= link_to 'Continue', next_wizard_path %>
+
 <% end %>
-
-<%= link_to 'skip', next_wizard_path %>

@@ -8,9 +8,13 @@ class AfterSignupController < ApplicationController
     @user = current_user
     case step
     when :add_interests_list
-      @profile = Profile.new
-      @profile.user_id = @user.id
-      @profile.save
+      if !@user.profile
+        @profile = Profile.new
+        @profile.user_id = @user.id
+        @profile.save
+      else
+        @profile = @user.profile
+      end
 
       @username = @user.profile.username
     end
@@ -22,8 +26,11 @@ class AfterSignupController < ApplicationController
     @user = current_user
     case step
     when :add_interests_list
-      @profile = @user.profile
-      @profile.update_attributes(user_profile_parameters)
+      profile = @user.profile
+
+      if profile.tag_list.empty?
+        profile.update_attributes(user_profile_parameters)
+      end
     end
     sign_in(@user, :bypass => true) # needed for devise
     render_wizard @user
