@@ -1,12 +1,21 @@
 class Media < ActiveRecord::Base
 
   acts_as_taggable
+  acts_as_taggable_on :tags
+  scope :by_join_date, order("created_at DESC")
 
   def self.tag_parse array_param
     result = ''
     array_param.each do |row|
       result = result + row
     end
+  end
+
+  def self.get_media_based_on_tag tag_param
+    # Do this shit
+    # http://stackoverflow.com/questions/2816562/acts-as-taggable-on-find-tags-with-name-like-sort-by-tag-counts
+    #User.skill_counts.order('count DESC').limit(5).where('tags.name LIKE ?', params[:query]) 
+    Media.tags.order('created_at DESC').limit(5).where('tags.name LIKE ?', 'nyc') 
   end
 
   def self.ask_for_fresh_popular_media

@@ -22,7 +22,7 @@ gem 'jquery-rails'
 # Where the magic comes from
 gem 'devise'
 gem 'wicked'
-gem 'acts-as-taggable-on'
+gem 'acts-as-taggable-on', '3.0.0'
 gem 'instagram'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
