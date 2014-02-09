@@ -4,6 +4,12 @@ class Media < ActiveRecord::Base
   acts_as_taggable_on :tags
   scope :by_join_date, order("created_at DESC")
 
+
+  def self.save
+    # save my stuff
+  end
+
+
   def self.tag_parse array_param
     result = ''
     array_param.each do |row|
@@ -11,11 +17,8 @@ class Media < ActiveRecord::Base
     end
   end
 
-  def self.get_media_based_on_tag tag_param
-    # Do this shit
-    # http://stackoverflow.com/questions/2816562/acts-as-taggable-on-find-tags-with-name-like-sort-by-tag-counts
-    #User.skill_counts.order('count DESC').limit(5).where('tags.name LIKE ?', params[:query]) 
-    Media.tags.order('created_at DESC').limit(5).where('tags.name LIKE ?', 'nyc') 
+  def self.get_phversus_media_based_on_tag tag_param
+    Media.tagged_with(tag_param)
   end
 
   def self.ask_for_fresh_popular_media
@@ -49,5 +52,13 @@ class Media < ActiveRecord::Base
     end
     Media.all.count
   end
+
+  def self.ask_for_media_by_tag tag_param
+    # Go to Instagram
+    tagged_media = Instagram.tag_recent_media tag_param
+    p '======== Tagged media ======='
+    p tagged_media
+  end
+
 
 end
