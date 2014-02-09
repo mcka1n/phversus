@@ -2,6 +2,10 @@
 <h1>  Phversus </h1>
 
 <center>
+  <% if user_signed_in? %>
+    Based on: <%= @tag_based_on_user %> : 
+    
+  <% end %>
   <h2> #  <%= @tag %>  </h2>
 </center>
 
