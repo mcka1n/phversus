@@ -5,8 +5,32 @@ class Media < ActiveRecord::Base
   scope :by_join_date, order("created_at DESC")
 
 
-  def self.save
+  def self.save_media row
     # save my stuff
+    result = false
+    
+    media = Media.new
+    media.content_type = row.type
+    media.tag_list = row.tags.map{ |i|  %Q(#{i}) }.join(',')
+    media.instagram_id = row.id
+
+    if row.caption
+      media.title = row.caption.text
+    end
+
+    media.instagram_user_id = row.user.id
+    media.instagram_user_profile_picture = row.user.profile_picture
+    media.instagram_user_username = row.user.username
+    media.instagram_link = row.link
+    media.instagram_media_created_at = row.created_time
+    media.small = row.images.low_resolution.url
+    media.medium = row.images.thumbnail.url
+    media.large = row.images.standard_resolution.url
+    
+    if media.save
+      result = true
+    end
+    result
   end
 
 
@@ -29,24 +53,7 @@ class Media < ActiveRecord::Base
         does_it_exists = Media.where(:instagram_id => row.id).count
         if does_it_exists == 0
             p '==> Boom!, saving an image'
-            media = Media.new
-            media.content_type = row.type
-            media.tag_list = row.tags.map{ |i|  %Q(#{i}) }.join(',')
-            media.instagram_id = row.id
-
-            if row.caption
-              media.title = row.caption.text
-            end
-            
-            media.instagram_user_id = row.user.id
-            media.instagram_user_profile_picture = row.user.profile_picture
-            media.instagram_user_username = row.user.username
-            media.instagram_link = row.link
-            media.instagram_media_created_at = row.created_time
-            media.small = row.images.low_resolution.url
-            media.medium = row.images.thumbnail.url
-            media.large = row.images.standard_resolution.url
-            media.save
+            Media.save_media row
         end
       end
     end
