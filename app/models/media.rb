@@ -64,7 +64,18 @@ class Media < ActiveRecord::Base
     # Go to Instagram
     tagged_media = Instagram.tag_recent_media tag_param
     p '======== Tagged media ======='
-    p tagged_media
+    tagged_media.each do |row|
+
+      if row.type != 'video'
+        does_it_exists = Media.where(:instagram_id => row.id).count
+        if does_it_exists == 0
+            p '==> Boom!, saving an image'
+            Media.save_media row
+        end
+      end
+    end
+    Media.all.count
+
   end
 
 
