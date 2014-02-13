@@ -23,7 +23,7 @@ class HomeController < ApplicationController
         # We need to go and search on Instagram for this tag.
         # If we can not find the specific tag, let's look for 
    	# related ones.
-        media_array_based_on_tag = Media.ask_for_media_by_tag tag_to_search_for
+        HarvestJob.new.async.perform tag_to_search_for
       end
       @tag_based_on_user = tag_to_search_for
     else

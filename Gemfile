@@ -24,6 +24,7 @@ gem 'devise'
 gem 'wicked'
 gem 'acts-as-taggable-on', '3.0.0'
 gem 'instagram'
+gem 'sucker_punch'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
