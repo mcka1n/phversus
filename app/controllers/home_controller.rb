@@ -23,11 +23,17 @@ class HomeController < ApplicationController
         # We need to go and search on Instagram for this tag.
         # If we can not find the specific tag, let's look for 
    	# related ones.
+       do_random_media
         HarvestJob.new.async.perform tag_to_search_for
       end
       @tag_based_on_user = tag_to_search_for
     else
-      # ###################################
+     do_random_media
+    end
+  end
+
+  def do_random_media
+     # ###################################
       # Show random stuff
       # ###################################
       @media_left = Media.all[Random.rand(Media.all.count)]
@@ -36,7 +42,7 @@ class HomeController < ApplicationController
       @tag = @media_left.tag_list
       @picture_left = @media_left.large
       @picture_right = @media_right.large
-    end
   end
+
 
 end
