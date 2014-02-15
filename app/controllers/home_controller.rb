@@ -47,7 +47,7 @@ class HomeController < ApplicationController
 
   def vote_up
     begin
-      current_user.vote_for(@post = Post.find(params[:id]))
+      current_user.vote_for(@media = Media.find(params[:id]))
       redirect_to :back
       flash[:sucess] = "You have voted successfully"
       #render :nothing => true, :status => 200

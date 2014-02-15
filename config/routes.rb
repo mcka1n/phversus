@@ -6,4 +6,11 @@ Phversus::Application.routes.draw do
 
   root :to => "home#index"
   resources :votes
+
+  resources :home do
+    member do
+      post :vote_up
+    end
+  end
+  
 end
