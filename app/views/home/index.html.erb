@@ -12,11 +12,6 @@
 <table align="center">
   <tr>
     <td>
-        <%= link_to(vote_up_post_path(@post), :method => :post, :class => "upVote") do %>
-            &#9650;<br />
-            <span><%=@post.votes_for%></span>
-          <% end %>
-
         <%=image_tag(@picture_left, alt: "phVersus Example Image")%>
         <p>phVersus Example Image</p>
     </td>
