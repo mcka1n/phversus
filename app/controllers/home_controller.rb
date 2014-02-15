@@ -33,6 +33,7 @@ class HomeController < ApplicationController
   end
 
   def do_random_media
+
      # ###################################
       # Show random stuff
       # ###################################
@@ -44,5 +45,17 @@ class HomeController < ApplicationController
       @picture_right = @media_right.large
   end
 
+  def vote_up
+    begin
+      current_user.vote_for(@post = Post.find(params[:id]))
+      redirect_to :back
+      flash[:sucess] = "You have voted successfully"
+      #render :nothing => true, :status => 200
+    rescue ActiveRecord::RecordInvalid
+      #render :nothing => true, :status => 404
+      redirect_to :back
+      flash[:error] = "You have already voted for this one"
+    end
+  end
 
 end

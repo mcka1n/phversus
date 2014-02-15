@@ -3,7 +3,7 @@ class Media < ActiveRecord::Base
   acts_as_taggable
   acts_as_taggable_on :tags
   scope :by_join_date, order("created_at DESC")
-
+  acts_as_voteable
 
   def self.save_media row
     # save my stuff
