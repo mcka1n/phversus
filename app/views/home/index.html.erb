@@ -12,19 +12,23 @@
 <table align="center">
   <tr>
     <td>
-        <%= link_to(vote_up_home_path(@media_left), :method => :post, :class => "upVote") do %>
-            &#9650;<br />
-            <span><%=@media_left.votes_for%></span>
+        <% if user_signed_in? %>
+          <%= link_to(vote_up_home_path(@media_left), :method => :post, :class => "upVote") do %>
+              &#9650;<br />
+              <span><%=@media_left.votes_for%></span>
           <% end %>
+        <% end %>
 
         <%=image_tag(@picture_left, alt: "phVersus Example Image")%>
         <p>phVersus Example Image</p>
     </td>
     <td>
-        <%= link_to(vote_up_home_path(@media_right), :method => :post, :class => "upVote") do %>
-            &#9650;<br />
-            <span><%=@media_right.votes_for%></span>
+        <% if user_signed_in? %>
+          <%= link_to(vote_up_home_path(@media_right), :method => :post, :class => "upVote") do %>
+              &#9650;<br />
+              <span><%=@media_right.votes_for%></span>
           <% end %>
+        <% end %>
         <%=image_tag(@picture_right, alt: "phVersus Example Image")%>
         <p>phVersus Example Image</p>
     </td>
