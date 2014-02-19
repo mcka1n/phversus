@@ -22,8 +22,8 @@ class HomeController < ApplicationController
       else
         # We need to go and search on Instagram for this tag.
         # If we can not find the specific tag, let's look for 
-   	# related ones.
-       do_random_media
+   	    # related ones.
+        do_random_media
         HarvestJob.new.async.perform tag_to_search_for
       end
       @tag_based_on_user = tag_to_search_for
@@ -47,12 +47,20 @@ class HomeController < ApplicationController
 
   def vote_up
     begin
-      current_user.vote_for(@media = Media.find(params[:id]))
+      media = Media.find(params[:id])
+      distillates = media.distillates.where(:tag => params[:tag])
+      if distillates.count > 0
+        current_user.vote_for(distillates.last)
+      else
+        distillate = Distillate.new
+        distillate.media_id = media.id
+        distillate.tag = params[:tag]
+        distillate.save
+        current_user.vote_for(distillate)
+      end
       redirect_to :back
       flash[:sucess] = "You have voted successfully"
-      #render :nothing => true, :status => 200
     rescue ActiveRecord::RecordInvalid
-      #render :nothing => true, :status => 404
       redirect_to :back
       flash[:error] = "You have already voted for this one"
     end

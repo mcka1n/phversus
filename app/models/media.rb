@@ -5,6 +5,8 @@ class Media < ActiveRecord::Base
   scope :by_join_date, order("created_at DESC")
   acts_as_voteable
 
+  has_many :distillates
+
   def self.save_media row
     # save my stuff
     result = false

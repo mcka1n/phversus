@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217032114) do
+ActiveRecord::Schema.define(version: 20140219033841) do
 
   create_table "distillates", force: true do |t|
-    t.string   "pool_id"
+    t.string   "media_id"
     t.string   "tag"
     t.datetime "created_at"
     t.datetime "updated_at"
