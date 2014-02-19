@@ -6,12 +6,10 @@ class HomeController < ApplicationController
       # ###################################
       # Show stuff related to user's tag_list
       # ###################################
-      p '------- ok, user is in'
+
       tag_to_search_for = Profile.get_random_interest current_user.profile.tag_list
       media_array = Media.get_phversus_media_based_on_tag tag_to_search_for
-      p '--------- tag: ' + tag_to_search_for
-      p ' -------- array: '+media_array.to_s
-      p ' -------- count: '+media_array.count.to_s
+      
       if media_array.count > 0
         @media_left = media_array[Random.rand(media_array.count)]
         @media_right = media_array[Random.rand(media_array.count)]

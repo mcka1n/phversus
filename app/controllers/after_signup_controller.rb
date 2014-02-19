@@ -15,8 +15,6 @@ class AfterSignupController < ApplicationController
       else
         @profile = @user.profile
       end
-
-      #@username = @user.profile.username
     end
     render_wizard
   end
