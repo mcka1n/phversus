@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204005642) do
+ActiveRecord::Schema.define(version: 20140219033841) do
+
+  create_table "distillates", force: true do |t|
+    t.string   "media_id"
+    t.string   "tag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "media", force: true do |t|
     t.string   "instagram_id"
@@ -33,6 +40,24 @@ ActiveRecord::Schema.define(version: 20140204005642) do
   end
 
   add_index "media", ["instagram_user_id"], name: "index_media_on_instagram_user_id"
+
+  create_table "pools", force: true do |t|
+    t.string   "instagram_id"
+    t.string   "instagram_user_id"
+    t.string   "instagram_link"
+    t.string   "title"
+    t.text     "description"
+    t.string   "slug"
+    t.string   "content_type"
+    t.string   "small"
+    t.string   "medium"
+    t.string   "large"
+    t.string   "instagram_user_profile_picture"
+    t.string   "instagram_user_username"
+    t.string   "instagram_media_created_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "profiles", force: true do |t|
     t.integer  "user_id"
@@ -96,8 +121,17 @@ ActiveRecord::Schema.define(version: 20140204005642) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "votes", force: true do |t|
+    t.boolean  "vote",          default: false, null: false
+    t.integer  "voteable_id",                   null: false
+    t.string   "voteable_type",                 null: false
+    t.integer  "voter_id"
+    t.string   "voter_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "votes", ["voteable_id", "voteable_type"], name: "index_votes_on_voteable_id_and_voteable_type"
+  add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], name: "fk_one_vote_per_user_per_entity", unique: true
+  add_index "votes", ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type"
 
 end
