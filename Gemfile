@@ -26,6 +26,7 @@ gem 'acts-as-taggable-on', '3.0.0'
 gem 'instagram'
 gem 'sucker_punch'
 gem 'thumbs_up'
+gem 'omniauth-instagram'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 

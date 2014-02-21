@@ -18,7 +18,10 @@
   </li>
 <% else %>
   <li>
+  <%= link_to "Sign in with Instagram", user_omniauth_authorize_path(:instagram) %>
+  or
   <%= link_to('Sign up', new_user_registration_path)  %>
+
   </li>
 <% end %>
 
