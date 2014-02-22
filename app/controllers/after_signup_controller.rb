@@ -9,9 +9,7 @@ class AfterSignupController < ApplicationController
     case step
     when :add_interests_list
       if !@user.profile
-        @profile = Profile.new
-        @profile.user_id = @user.id
-        @profile.save
+        @profile = Profile.save_profile @user
       else
         @profile = @user.profile
       end

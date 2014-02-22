@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
       update_from_omniauth user, auth
     else
       user = create_from_omniauth auth
-      Profile.save_profile user
     end
 
     user
