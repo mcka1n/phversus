@@ -22,5 +22,8 @@ module Phversus
     # Forcing your application to not access the DB
     # or load models when precompiling your assets.
     config.assets.initialize_on_precompile = false
+
+    # Due to i18n error
+    config.i18n.enforce_available_locales = true
   end
 end

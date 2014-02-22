@@ -5,7 +5,14 @@ class Profile < ActiveRecord::Base
   belongs_to :user
 
   def self.get_random_interest array_param
-  	array_param[Random.rand(array_param.count)]
+    array_param[Random.rand(array_param.count)]
+  end
+
+  def self.save_profile user
+    profile = Profile.new
+    profile.user_id = user.id 
+    profile.save
+    profile
   end
 
 end
