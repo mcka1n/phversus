@@ -1,41 +1,19 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Phversus</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<p class="notice"><%= notice %></p>
-	<p class="alert"><%= alert %></p>
+    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
 
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
 
- <% if user_signed_in? %>
-  <li>
-    <%= link_to(current_user.email, edit_user_registration_path) %>
-  </li>
-<% else %>
-  <li>
-  <%= link_to "Sign in with Instagram", user_omniauth_authorize_path(:instagram) %>
-  or
-  <%= link_to('Sign up', new_user_registration_path)  %>
+  <body>
 
-  </li>
-<% end %>
-
-<% if user_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_user_session_path, :method=>'delete') %>
-  </li>
-<% else %>
-  <li>
-  <%= link_to('Login', new_user_session_path)  %>
-  </li>
-<% end %>
-
-<%= yield %>
-
-</body>
+    <%= yield %>
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>
