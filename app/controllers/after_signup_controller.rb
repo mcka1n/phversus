@@ -26,6 +26,15 @@ class AfterSignupController < ApplicationController
 
       if profile.tag_list.empty?
         profile.update_attributes(user_profile_parameters)
+
+        if current_user.email == 'temporary_email@domain.com'
+          if !user_profile_parameters[:address].empty? && user_profile_parameters[:address] != 'temporary_email@domain.com'
+            p 'BOOM lets save the new email address'
+            current_user.email = user_profile_parameters[:address]
+            current_user.save
+          end
+        end
+
       end
     end
     sign_in(@user, :bypass => true) # needed for devise

@@ -5,11 +5,23 @@
 <% if @profile.tag_list.empty? %>
 
   <%= form_for @profile, :url => wizard_path, :method => :put do |f| %>
+
+    <% if @profile.user.email == 'temporary_email@domain.com' %>
+      
+      <div class="field">
+        <%= f.label :address, "email" %><br />
+        <%= f.email_field :address, :required => true %>
+      </div>
+           
+    <% end %>
+
     <div class="field">
       <%= f.label :tag_list, "(Comma Separated)" %><br />
       <%= f.text_field :tag_list %>
     </div>
     <%= f.submit "Continue" %>
+  
+
   <% end %>
 
 <% else %>
