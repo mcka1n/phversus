@@ -7,12 +7,14 @@
   <%= form_for @profile, :url => wizard_path, :method => :put do |f| %>
 
     <% if @profile.user.email == 'temporary_email@domain.com' %>
-      
+
       <div class="field">
         <%= f.label :address, "email" %><br />
         <%= f.email_field :address, :required => true %>
       </div>
-           
+
+      <p> We won't spam you!, actually we are against that!.</p>
+
     <% end %>
 
     <div class="field">
@@ -20,12 +22,12 @@
       <%= f.text_field :tag_list %>
     </div>
     <%= f.submit "Continue" %>
-  
+
 
   <% end %>
 
 <% else %>
-  It looks like you already have some interests on phVersus 
+  It looks like you already have some interests on phVersus
   <br>
   <%= @profile.tag_list %>
   <br>
